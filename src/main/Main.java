@@ -8,9 +8,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Scanner in = new Scanner(Path.of("C:\\Users\\KOWALMA3\\Desktop\\task02\\iban\\src\\main\\ibans"), StandardCharsets.UTF_8);
+        String path = System.getProperty("user.dir")+"\\src\\main\\ibans";
+        System.out.println(path);
+        Scanner in = new Scanner(Path.of(path), StandardCharsets.UTF_8);
         in.useDelimiter("\n");
-
+        System.out.println(System.getProperty("user.dir"));
        while (in.hasNext()) {
             String message = in.next();
             Iban ibanObject = new Iban(false,message);
