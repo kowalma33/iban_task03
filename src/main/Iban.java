@@ -7,9 +7,9 @@ public class Iban {
     public String iban;
     public boolean flag;
 
-    public Iban(boolean flag, String iban) {
+    public Iban(String iban) {
         this.iban = iban;
-        this.flag = flag;
+        this.flag = false;
     }
 
     public static void printIban(Iban iban) {
@@ -28,13 +28,13 @@ public class Iban {
     }
 
     static public Iban checkNumberOfChar(Iban ibanObject) {
-        boolean f = false;
+
         if (ibanObject.iban.length() >= 14 & ibanObject.iban.length() <= 34) {
-            f = true;
+            ibanObject.flag = true;
         } else {
-            f = false;
+            ibanObject.flag = false;
         }
-        ibanObject.flag = f;
+
         return ibanObject;
     }
 
@@ -44,10 +44,9 @@ public class Iban {
             tmp = transferChar(tmp);
             tmp = replaceChar(tmp);
             ibanObject.flag = countSum(tmp);
-            return ibanObject;
-        } else {
-            return ibanObject;
+
         }
+        return ibanObject;
     }
 
     static private String transferChar(String iban) {

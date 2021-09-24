@@ -14,7 +14,7 @@ public class Main {
         System.out.println(System.getProperty("user.dir"));
         while (in.hasNext()) {
             String message = in.next();
-            Iban ibanObject = new Iban(false, message);
+            Iban ibanObject = new Iban(message);
             ibanObject = Iban.clean(ibanObject);
             ibanObject = Iban.checkNumberOfChar(ibanObject);
             ibanObject = Iban.checkIban(ibanObject);
