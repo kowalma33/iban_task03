@@ -23,13 +23,13 @@ public class MainTest {
         assertEquals(correctIban.iban, testIban.iban);
     }
 
-    @Test
+    /*@Test
     public void testCheckIban() {
         Iban testIban = new Iban("PL10105000997603123456789123");
         testIban.flag = true;
         testIban = Iban.checkIban(testIban);
         assertEquals(true, testIban.flag);
-    }
+    }*/
 
 
 }

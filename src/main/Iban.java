@@ -1,6 +1,7 @@
 package main;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 public class Iban {
 
@@ -38,11 +39,11 @@ public class Iban {
         return ibanObject;
     }
 
-    static public Iban checkIban(Iban ibanObject) {
+    static public Iban checkIban(Iban ibanObject, Map hashMap) {
         if (ibanObject.flag == true) {
             String tmp = ibanObject.iban;
             tmp = transferChar(tmp);
-            tmp = replaceChar(tmp);
+            tmp = replaceChar(tmp, hashMap);
             ibanObject.flag = countSum(tmp);
 
         }
@@ -55,23 +56,13 @@ public class Iban {
         return end + begining;
     }
 
-    static private String replaceChar(String iban) {
+    static private String replaceChar(String iban, Map hashMap) {
         String tmp = "";
-        int tmpNumber = 0;
+        Object tmpNumber = 0;
         for (int i = 0; i < iban.length(); i++) {
-            char aChar = iban.charAt(i);
-            int ascii = aChar;
-            if (ascii >= 65 & ascii <= 90) {
-                tmpNumber = ascii - 55;
-            } else {
-                tmpNumber = 0;
-            }
-
-            if (tmpNumber == 0) {
-                tmp = tmp + aChar;
-            } else {
-                tmp = tmp + tmpNumber;
-            }
+            tmpNumber = hashMap.getOrDefault(iban.charAt(i),'0');
+            if(tmpNumber.equals('0')){ tmp = tmp + iban.charAt(i);
+            } else { tmp = tmp + tmpNumber; }
         }
         return tmp;
     }
